@@ -1,0 +1,58 @@
+name: mediassist
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  tflite_flutter: ^0.12.1
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^4.0.0
+  firebase_auth: ^6.0.0
+  cloud_firestore: ^6.0.0
+
+  # Notifications
+  flutter_local_notifications: ^19.4.0
+  timezone: ^0.10.1
+  flutter_timezone: ^4.1.1
+
+  # UI
+  google_fonts: ^6.3.1
+
+  # Utilities
+  image_picker: ^1.1.2
+  http: ^1.2.1
+  collection: ^1.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/avatars/
+    - assets/models/
+    - assets/data/
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/app_icon.png"
+
+  adaptive_icon_background: "#0A0F1E"
+  adaptive_icon_foreground: "assets/icon/app_icon.png"
+
+  min_sdk_android: 21
