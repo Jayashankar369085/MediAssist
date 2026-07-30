@@ -3,7 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../services/medicine_service.dart';
 import 'reminder_screen.dart';
 class PrescriptionResultScreen extends StatefulWidget {
-  const PrescriptionResultScreen({super.key});
+
+  final List<dynamic>? extractedMedicines;
+
+  const PrescriptionResultScreen({
+    super.key,
+    this.extractedMedicines,
+  });
 
   @override
   State<PrescriptionResultScreen> createState() =>
@@ -19,10 +25,67 @@ class _PrescriptionResultScreenState
       medicines = [];
 
   @override
-  void initState() {
-    super.initState();
+@override
+void initState() {
+  super.initState();
+
+  if (widget.extractedMedicines != null &&
+      widget.extractedMedicines!.isNotEmpty) {
+
+    for (final medicine in widget.extractedMedicines!) {
+
+      medicines.add({
+
+        'medicine': TextEditingController(
+          text: medicine['medicineName'] ?? '',
+        ),
+
+        'dosageValue': TextEditingController(
+          text: medicine['dosage'] == 0
+              ? ''
+              : medicine['dosage'].toString(),
+        ),
+
+        'dosageUnit': TextEditingController(
+          text: medicine['dosageUnit'] ?? 'mg',
+        ),
+
+        'morningFreq': TextEditingController(
+          text: (medicine['morning'] ?? 0).toString(),
+        ),
+
+        'afternoonFreq': TextEditingController(
+          text: (medicine['afternoon'] ?? 0).toString(),
+        ),
+
+        'nightFreq': TextEditingController(
+          text: (medicine['night'] ?? 0).toString(),
+        ),
+
+        'durationValue': TextEditingController(
+          text: medicine['duration'] == 0
+              ? ''
+              : medicine['duration'].toString(),
+        ),
+
+        'durationUnit': TextEditingController(
+          text: (medicine['durationUnit'] ?? 'Day')
+                  .toString()
+                  .startsWith('Day')
+              ? 'Days'
+              : 'Weeks',
+        ),
+
+      });
+
+    }
+
+    setState(() {});
+  }
+  else {
     addMedicine();
   }
+}
 
   void addMedicine() {
   medicines.add({
